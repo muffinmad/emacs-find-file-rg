@@ -45,11 +45,17 @@
       'ido-completing-read
     'completing-read))
 
+(defun find-file-rg--dir ()
+  "Get directory to find files in. If invoked with prefix argument it always asks for dirertory."
+  (if current-prefix-arg
+      (read-directory-name "Choose directory: " nil nil t)
+    (cdr (project-current t))))
+
 ;;;###autoload
 (defun find-file-rg (&optional initial)
   "Find file in `project-current'. INITIAL will be used as initial input for completing read function."
   (interactive)
-  (let* ((dir (cdr (project-current t)))
+  (let* ((dir (find-file-rg--dir))
          (files (find-file-rg--file-list dir))
          (file (funcall (find-file-rg--completion-fun) (format "Find file in %s: " dir) files nil nil initial)))
     (when file (find-file (expand-file-name file dir)))))

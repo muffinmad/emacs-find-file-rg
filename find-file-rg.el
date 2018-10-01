@@ -29,6 +29,20 @@
 
 ;;; Code:
 
+(defgroup find-file-rg nil
+  "Settings for find-file-rg."
+  :group 'tools
+  :prefix "django-commands-")
+
+(defcustom find-file-rg-projects-dir nil
+  "Projects directory.
+If there are no `project-current' this directory will be used as initial value
+for selecting directory to find files in.
+If nil then current directory will be used."
+  :type '(choice
+          (const :tag "Current directory" nil)
+          (string)))
+
 (defun find-file-rg--file-list (dir)
   "Get file list in DIR."
   (save-match-data
@@ -45,11 +59,18 @@
       'ido-completing-read
     'completing-read))
 
+(defun find-file-rg--read-dir ()
+  "Read directory to find file in.
+If invoked with prefix argument initial value will be current directory
+otherwise `find-file-rg-projects-dir' will be used."
+  (abbreviate-file-name
+   (read-directory-name "Choose directory: " (unless current-prefix-arg find-file-rg-projects-dir) nil t)))
+
 (defun find-file-rg--dir ()
   "Get directory to find files in. If invoked with prefix argument it always asks for dirertory."
   (if current-prefix-arg
-      (read-directory-name "Choose directory: " nil nil t)
-    (cdr (project-current t))))
+      (find-file-rg--read-dir)
+    (or (cdr (project-current)) (find-file-rg--read-dir))))
 
 ;;;###autoload
 (defun find-file-rg (&optional initial)

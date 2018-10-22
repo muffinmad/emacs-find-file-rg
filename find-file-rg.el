@@ -25,7 +25,7 @@
 
 ;;; Commentary:
 ;;
-;; This package allows to find files in `project-current' or any directory using 'rg --files' command
+;; This package allows to find files in `project-current' or any directory using 'rg --files' command.
 
 ;;; Code:
 

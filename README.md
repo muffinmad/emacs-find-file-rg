@@ -2,7 +2,7 @@
 
 # emacs-find-file-rg
 
-This package allows to find file in current project using `rg --files` command.
+This package allows to find file in current project or any directory using `rg --files` command.
 
 Ido completion read will be used if `ido-mode` is active.
 
@@ -28,7 +28,7 @@ Put `find-file-rg.el` somewhere in your load path and add this to `init.el`:
 
 #### `find-file-rg`
 
-Asks for project dir if needed, reads files list using `rg --files --follow` command and reads file with completing function. Always asks for directory to find file in if invoked with prefix argument.
+Asks for project dir if needed, reads files list using `rg --files --follow` command and reads filename with completing function. Always asks for directory to find file in if invoked with prefix argument.
 
 Accepts optional arg `initial`. It's value used as initial input for completing function.
 

@@ -25,14 +25,14 @@
 
 ;;; Commentary:
 ;;
-;; This package allows find files in `project-current' using 'rg --files' command
+;; This package allows to find files in `project-current' or any directory using 'rg --files' command
 
 ;;; Code:
 
 (defgroup find-file-rg nil
   "Settings for find-file-rg."
   :group 'tools
-  :prefix "django-commands-")
+  :prefix "find-file-rg-")
 
 (defcustom find-file-rg-projects-dir nil
   "Projects directory.
@@ -45,13 +45,10 @@ If nil then current directory will be used."
 
 (defun find-file-rg--file-list (dir)
   "Get file list in DIR."
-  (save-match-data
-    (split-string
-     (shell-command-to-string
-      (format
-       "cd %s; rg --files --follow --null"
-       (shell-quote-argument (expand-file-name dir))))
-     "\0")))
+  (split-string
+   (shell-command-to-string
+    (format "cd %s; rg --files --follow --null" (shell-quote-argument (expand-file-name dir))))
+   "\0"))
 
 (defun find-file-rg--completion-fun ()
   "Get completing read function."

@@ -1,3 +1,5 @@
+[![License GPL 3](https://img.shields.io/badge/license-GPL_3-green.svg)](http://www.gnu.org/copyleft/gpl.html)
+
 # emacs-find-file-rg
 
 This package allows to find file in current project using `rg --files` command.

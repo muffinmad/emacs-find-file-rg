@@ -30,6 +30,6 @@ Asks for project dir if needed, reads files list using `rg --files --follow` com
 
 Accepts optional arg `initial`. It's value used as initial input for completing function.
 
-### `find-file-rg-at-point`
+#### `find-file-rg-at-point`
 
 Calls `find-file-rg` with active region or filename at point as initial value for completing function.

@@ -41,7 +41,7 @@ for selecting directory to find files in.
 If nil then current directory will be used."
   :type '(choice
           (const :tag "Current directory" nil)
-          (string)))
+          (directory)))
 
 (defun find-file-rg--file-list (dir)
   "Get file list in DIR."

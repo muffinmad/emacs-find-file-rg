@@ -64,14 +64,14 @@ otherwise `find-file-rg-projects-dir' will be used."
    (read-directory-name "Choose directory: " (unless current-prefix-arg find-file-rg-projects-dir) nil t)))
 
 (defun find-file-rg--dir ()
-  "Get directory to find files in. If invoked with prefix argument it always asks for dirertory."
+  "Get directory to find files in.  If invoked with prefix argument it always asks for directory."
   (if current-prefix-arg
       (find-file-rg--read-dir)
     (or (cdr (project-current)) (find-file-rg--read-dir))))
 
 ;;;###autoload
 (defun find-file-rg (&optional initial)
-  "Find file in `project-current'. INITIAL will be used as initial input for completing read function."
+  "Find file in `project-current'.  INITIAL will be used as initial input for completing read function."
   (interactive)
   (let* ((dir (find-file-rg--dir))
          (files (find-file-rg--file-list dir))

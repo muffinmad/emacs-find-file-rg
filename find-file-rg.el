@@ -75,7 +75,7 @@ otherwise `find-file-rg-projects-dir' will be used."
   (interactive)
   (let* ((dir (find-file-rg--dir))
          (files (find-file-rg--file-list dir))
-         (file (funcall (find-file-rg--completion-fun) (format "Find file in %s: " dir) files nil nil initial)))
+         (file (funcall (find-file-rg--completion-fun) (format "Find file in %s: " dir) files nil nil initial 'file-name-history)))
     (when file (find-file (expand-file-name file dir)))))
 
 ;;;###autoload

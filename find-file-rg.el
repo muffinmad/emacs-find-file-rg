@@ -76,7 +76,9 @@ otherwise `find-file-rg-projects-dir' will be used."
 
 ;;;###autoload
 (defun find-file-rg (&optional initial)
-  "Find file in `project-current'.  INITIAL will be used as initial input for completing read function."
+  "Find file in `project-current'.
+INITIAL will be used as initial input for completing read function.
+If invoked with prefix argument, ask for directory to search files in."
   (interactive)
   (let* ((dir (if current-prefix-arg
                   (find-file-rg--read-dir)

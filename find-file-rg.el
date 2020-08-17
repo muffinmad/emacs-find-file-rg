@@ -1,6 +1,6 @@
 ;;; find-file-rg.el --- Find file in project using ripgrep -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2018 Andrii Kolomoiets
+;; Copyright (C) 2018-2020 Andrii Kolomoiets
 
 ;; Author: Andrii Kolomoiets <andreyk.mad@gmail.com>
 ;; Keywords: tools
@@ -34,6 +34,12 @@
   :group 'tools
   :prefix "find-file-rg-")
 
+(defcustom find-file-rg-completion-function #'completing-read
+  "Function used to read user input.
+Must have same parameters as `completing-read'.
+Ido users may set this to `ido-completing-read'."
+  :type 'function)
+
 (defcustom find-file-rg-projects-dir nil
   "Projects directory.
 If there are no `project-current' this directory will be used as initial value
@@ -49,12 +55,6 @@ If nil then current directory will be used."
    (shell-command-to-string
     (format "cd %s; rg --files --follow --null" (shell-quote-argument (expand-file-name dir))))
    "\0"))
-
-(defun find-file-rg--completion-fun ()
-  "Get completing read function."
-  (if (and (boundp 'ido-mode) ido-mode)
-      'ido-completing-read
-    'completing-read))
 
 (defun find-file-rg--read-dir ()
   "Read directory to find file in.
@@ -75,7 +75,7 @@ otherwise `find-file-rg-projects-dir' will be used."
   (interactive)
   (let* ((dir (find-file-rg--dir))
          (files (find-file-rg--file-list dir))
-         (file (funcall (find-file-rg--completion-fun) (format "Find file in %s: " dir) files nil t initial 'file-name-history)))
+         (file (funcall find-file-rg-completion-function (format "Find file in %s: " dir) files nil t initial 'file-name-history)))
     (when file (find-file (expand-file-name file dir)))))
 
 ;;;###autoload

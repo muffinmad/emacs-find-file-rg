@@ -40,6 +40,14 @@ Must have same parameters as `completing-read'.
 Ido users may set this to `ido-completing-read'."
   :type 'function)
 
+(defcustom find-file-rg-executable "rg"
+  "Ripgrep executable."
+  :type 'string)
+
+(defcustom find-file-rg-arguments "--follow"
+  "Additional arguments to ripgrep."
+  :type 'string)
+
 (defcustom find-file-rg-projects-dir nil
   "Projects directory.
 If there are no `project-current' this directory will be used as initial value
@@ -53,7 +61,10 @@ If nil then current directory will be used."
   "Get file list in DIR."
   (split-string
    (shell-command-to-string
-    (format "cd %s; rg --files --follow --null" (shell-quote-argument (expand-file-name dir))))
+    (format "cd %s; %s %s --files --null"
+            (shell-quote-argument (expand-file-name dir))
+            find-file-rg-executable
+            find-file-rg-arguments))
    "\0"))
 
 (defun find-file-rg--read-dir ()

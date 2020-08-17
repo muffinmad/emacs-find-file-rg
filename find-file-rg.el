@@ -65,7 +65,7 @@ If nil then current directory will be used."
             (shell-quote-argument (expand-file-name dir))
             find-file-rg-executable
             find-file-rg-arguments))
-   "\0"))
+   "\0" t))
 
 (defun find-file-rg--read-dir ()
   "Read directory to find file in.

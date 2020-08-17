@@ -6,7 +6,7 @@ This package allows to find file in current project or any directory using `rg -
 
 ## Why?
 
-As the [ripgrep](https://github.com/BurntSushi/ripgrep) user, I have fine-tuned `.ignore` file in my projects folders to exclude certain files from grepping. It turned out that `rg --files` provides the list of only interesting files.
+As a [ripgrep](https://github.com/BurntSushi/ripgrep) user, I have fine-tuned `.ignore` file in my projects folders to exclude certain files from grepping. It turned out that `rg --files` provides the list of only interesting files.
 
 ## Usage
 
@@ -14,7 +14,7 @@ As the [ripgrep](https://github.com/BurntSushi/ripgrep) user, I have fine-tuned 
 
 #### `find-file-rg`
 
-Asks for project dir if needed and reads filename with completing function. `project-current` is used as default directory to search. If invoked with prefix argument, always asks for directory to find files in.
+Asks for project dir if needed and reads filename with completing function. `project-current` is used as the default directory to search in. If invoked with prefix argument, always asks for directory to find files in.
 
 #### `find-file-rg-at-point`
 

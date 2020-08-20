@@ -54,7 +54,9 @@
 
 (defcustom find-file-rg-arguments "--follow"
   "Additional arguments to ripgrep."
-  :type 'string)
+  :type '(choice (const :tag "None" nil)
+                 (string :tag "Argument string")
+                 (repeat :tag "Argument list" string)))
 
 (defcustom find-file-rg-projects-dir nil
   "Projects directory.
@@ -72,7 +74,9 @@ If nil then current directory will be used."
      (shell-command-to-string
       (format "%s %s --files --null"
               (shell-quote-argument find-file-rg-executable)
-              find-file-rg-arguments)))
+              (if (listp find-file-rg-arguments)
+                  (mapconcat #'shell-quote-argument find-file-rg-arguments " ")
+                (or find-file-rg-arguments "")))))
    "\0" t))
 
 (defun find-file-rg--read-dir ()

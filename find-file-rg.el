@@ -71,7 +71,7 @@ If nil then current directory will be used."
    (let ((default-directory dir))
      (shell-command-to-string
       (format "%s %s --files --null"
-              find-file-rg-executable
+              (shell-quote-argument find-file-rg-executable)
               find-file-rg-arguments)))
    "\0" t))
 

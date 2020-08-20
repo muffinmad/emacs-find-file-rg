@@ -48,12 +48,6 @@
   :group 'tools
   :prefix "find-file-rg-")
 
-(defcustom find-file-rg-completion-function #'completing-read
-  "Function used to read user input.
-Must have same parameters as `completing-read'.
-Ido users may want to set this to `ido-completing-read'."
-  :type 'function)
-
 (defcustom find-file-rg-executable "rg"
   "Ripgrep executable."
   :type 'string)
@@ -99,7 +93,7 @@ If invoked with prefix argument, ask for directory to search files in."
                 (or (cdr (project-current))
                     (find-file-rg--read-dir))))
          (files (find-file-rg--file-list dir))
-         (file (funcall find-file-rg-completion-function (format "Find file in %s: " dir) files nil t initial 'file-name-history)))
+         (file (completing-read (format "Find file in %s: " dir) files nil t initial 'file-name-history)))
     (when file (find-file (expand-file-name file dir)))))
 
 ;;;###autoload

@@ -68,11 +68,11 @@ If nil then current directory will be used."
 (defun find-file-rg--file-list (dir)
   "Get file list in DIR."
   (split-string
-   (shell-command-to-string
-    (format "cd %s; %s %s --files --null"
-            (shell-quote-argument (expand-file-name dir))
-            find-file-rg-executable
-            find-file-rg-arguments))
+   (let ((default-directory dir))
+     (shell-command-to-string
+      (format "%s %s --files --null"
+              find-file-rg-executable
+              find-file-rg-arguments)))
    "\0" t))
 
 (defun find-file-rg--read-dir ()

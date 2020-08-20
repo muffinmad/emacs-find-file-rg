@@ -91,9 +91,9 @@ If invoked with prefix argument, ask for directory to search files in."
                   (find-file-rg--read-dir)
                 (or (cdr (project-current))
                     (find-file-rg--read-dir))))
-         (files (find-file-rg--file-list dir))
          (file (completing-read (format "Find file in %s: " (abbreviate-file-name dir))
-                                files nil t initial 'file-name-history)))
+                                (find-file-rg--file-list dir)
+                                nil t initial 'file-name-history)))
     (when file (find-file (expand-file-name file dir)))))
 
 ;;;###autoload

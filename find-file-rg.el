@@ -79,8 +79,7 @@ If nil then current directory will be used."
   "Read directory to find file in.
 If invoked with prefix argument initial value will be current directory
 otherwise `find-file-rg-projects-dir' will be used."
-  (abbreviate-file-name
-   (read-directory-name "Choose directory: " (unless current-prefix-arg find-file-rg-projects-dir) nil t)))
+  (read-directory-name "Choose directory: " (unless current-prefix-arg find-file-rg-projects-dir) nil t))
 
 ;;;###autoload
 (defun find-file-rg (&optional initial)
@@ -93,7 +92,8 @@ If invoked with prefix argument, ask for directory to search files in."
                 (or (cdr (project-current))
                     (find-file-rg--read-dir))))
          (files (find-file-rg--file-list dir))
-         (file (completing-read (format "Find file in %s: " dir) files nil t initial 'file-name-history)))
+         (file (completing-read (format "Find file in %s: " (abbreviate-file-name dir))
+                                files nil t initial 'file-name-history)))
     (when file (find-file (expand-file-name file dir)))))
 
 ;;;###autoload

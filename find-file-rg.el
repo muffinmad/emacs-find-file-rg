@@ -83,7 +83,7 @@ If nil then current directory will be used."
   "Read directory to find file in.
 If invoked with prefix argument initial value will be current directory
 otherwise `find-file-rg-projects-dir' will be used."
-  (read-directory-name "Choose directory: " (unless current-prefix-arg find-file-rg-projects-dir) nil t))
+  (read-directory-name "Directory: " (unless current-prefix-arg find-file-rg-projects-dir) nil t))
 
 ;;;###autoload
 (defun find-file-rg (&optional initial)

@@ -1,4 +1,5 @@
 [![License GPL 3](https://img.shields.io/badge/license-GPL_3-green.svg)](http://www.gnu.org/copyleft/gpl.html)
+[![MELPA](https://melpa.org/packages/find-file-rg-badge.svg)](https://melpa.org/#/find-file-rg)
 
 # emacs-find-file-rg
 

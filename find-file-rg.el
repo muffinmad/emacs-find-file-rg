@@ -1,11 +1,11 @@
 ;;; find-file-rg.el --- Find file in project using ripgrep -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2018-2020 Andrii Kolomoiets
+;; Copyright (C) 2018-2022 Andrii Kolomoiets
 
 ;; Author: Andrii Kolomoiets <andreyk.mad@gmail.com>
 ;; Keywords: tools
 ;; URL: https://github.com/muffinmad/emacs-find-file-rg
-;; Package-Version: 1.0
+;; Package-Version: 1.1
 ;; Package-Requires: ((emacs "25.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -44,7 +44,7 @@
 ;;; Code:
 
 (defgroup find-file-rg nil
-  "Settings for find-file-rg."
+  "Settings for `find-file-rg'."
   :group 'tools
   :prefix "find-file-rg-")
 

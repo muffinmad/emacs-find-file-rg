@@ -5,7 +5,7 @@
 ;; Author: Andrii Kolomoiets <andreyk.mad@gmail.com>
 ;; Keywords: tools
 ;; URL: https://github.com/muffinmad/emacs-find-file-rg
-;; Package-Version: 1.2
+;; Package-Version: 1.2.1
 ;; Package-Requires: ((emacs "25.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -93,9 +93,11 @@ If invoked with prefix argument, ask for directory to search files in."
   (interactive)
   (let* ((dir (if current-prefix-arg
                   (find-file-rg--read-dir)
-                (or (if (fboundp 'project-root)
-                        (project-root (project-current))
-                      (cdr (project-current)))
+                (or (let ((project (project-current)))
+                      (when project
+                        (if (fboundp 'project-root)
+                            (project-root project)
+                          (cdr project))))
                     (find-file-rg--read-dir))))
          (file-list (find-file-rg--file-list dir))
          (metadata '((category . file)))
